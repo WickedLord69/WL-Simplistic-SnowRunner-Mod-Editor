@@ -1,0 +1,23 @@
+NEXUS MODS REVIEW NOTES
+=======================
+
+Project: WL Simplistic SnowRunner Mod Editor
+Version: 1.1.3
+Author: Wicked Lord
+
+This package contains the source and build inputs for the quarantined v1.1.3
+Windows executable.
+
+Behavior likely relevant to automated scanning:
+1. The EXE is a custom launcher compiled by BUILD_PUBLIC_EXE.ps1.
+2. The launcher embeds the PowerShell application as Base64.
+3. At runtime the launcher extracts that script to the Windows temp directory.
+4. It launches powershell.exe with -ExecutionPolicy Bypass.
+5. The application intentionally reads/modifies SnowRunner game archive data.
+6. The application performs one HTTPS update-metadata request.
+7. It can open the official mod.io download page after user confirmation.
+
+There is no automatic executable download or self-replacement in v1.1.3.
+
+Please review BUILD_INSTRUCTIONS.txt and BUILD_PUBLIC_EXE.ps1 for the complete
+build path.

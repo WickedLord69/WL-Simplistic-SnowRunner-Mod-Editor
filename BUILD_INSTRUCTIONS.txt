@@ -1,0 +1,68 @@
+WL Simplistic SnowRunner Mod Editor v1.1.3
+REPRODUCIBLE BUILD INSTRUCTIONS
+===============================================
+
+Platform
+--------
+Windows 10 or Windows 11.
+
+No Visual Studio project, Python environment, package manager, or third-party
+compiler is required by the supplied build process.
+
+Source / build inputs
+---------------------
+WL-Simplistic-SnowRunner-Mod-Editor.ps1
+BUILD_PUBLIC_EXE.ps1
+BUILD_PUBLIC_EXE.bat
+assets\WL-icon.ico
+
+How to build
+------------
+1. Extract this source package to a normal writable folder.
+2. Keep the files and the assets folder in their supplied relative locations.
+3. Run BUILD_PUBLIC_EXE.bat.
+4. The batch file invokes Windows PowerShell and runs BUILD_PUBLIC_EXE.ps1.
+5. BUILD_PUBLIC_EXE.ps1 reads the PowerShell application source and icon,
+   embeds them into a small C# Windows launcher, and compiles:
+       WL-Simplistic-SnowRunner-Mod-Editor.exe
+   in the same folder.
+6. Launch the resulting EXE and perform Preview / Apply / Restore testing.
+
+What the generated EXE does at launch
+-------------------------------------
+The generated Windows launcher contains the PowerShell application source and
+icon as embedded Base64 data. At runtime it writes those embedded resources to
+temporary files, starts Windows PowerShell with:
+    -NoProfile -ExecutionPolicy Bypass -File "<temporary script>"
+and deletes the temporary script/icon when the application exits.
+
+This behavior is part of the supplied BUILD_PUBLIC_EXE.ps1 and may be relevant
+to heuristic antivirus detections.
+
+Network behavior
+----------------
+v1.1.3 contains an update checker.
+
+It performs an HTTPS GET to a raw GitHub Gist containing simple update metadata
+(Version and DownloadPage). The timeout is 3 seconds.
+
+If a newer version is found, the application asks the user whether to open the
+official mod.io page in the default browser.
+
+The application does NOT automatically download an EXE and does NOT
+self-replace or self-update.
+
+Game-file behavior
+------------------
+The application intentionally reads and modifies SnowRunner configuration
+archives as part of its stated purpose. It creates/verifies protected backups
+and supports restoration. Scan Mods in v1.1.3 is read-only for third-party mod
+trucks.
+
+Build notes
+-----------
+BUILD_PUBLIC_EXE.ps1 supports the C# compiler interface exposed by Windows
+PowerShell 5.1 and also contains a PowerShell 7+ Add-Type path.
+
+For review, BUILD_PUBLIC_EXE.ps1 is the authoritative description of how the
+released executable is constructed.

@@ -1,0 +1,11 @@
+WL Simplistic SnowRunner Mod Editor - v1.1.3
+
+- Fixed Addon/Trailer Center of Gravity applying to nested articulated physics bodies.
+- COG now targets only the primary PhysicsModel body for addons/trailers.
+- Fixes Articulated Towing Platform instability under heavy loads when Addon/Trailer COG is enabled.
+- Added automatic startup update checking.
+- Added manual Check for Updates button.
+- Added semantic version comparison and user-approved link to the official mod.io download page.
+- Update-check failures/offline use do not block the editor.
+- No automatic downloads or self-updating executable behavior.
+- Scan Mods remains read-only; third-party mod editing is still blocked for safety.
